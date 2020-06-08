@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import questions from './React-Test/questions.json';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import StarRatingComponent from 'react-star-rating-component';
 
 class App extends Component {
 	state = {
@@ -27,7 +28,7 @@ class App extends Component {
 		} else if (RightOrWrong === false) {
 			Text = <h2>Sorry!</h2>;
 		}
-
+		let starRating = { easy: 1, medium: 2, hard: 3 };
 		return (
 			<div
 				style={{
@@ -35,7 +36,13 @@ class App extends Component {
 				}}
 			>
 				<h1>{`Question ${num + 1} of 20`}</h1>
-				<h4>{decodeURIComponent(questions[num].category)}</h4>
+				<h6>{decodeURIComponent(questions[num].category)}</h6>
+				<StarRatingComponent
+					name='rate1'
+					starCount={5}
+					value={starRating[questions[num].difficulty]}
+					editing={false}
+				/>
 				<p>{decodeURIComponent(questions[num].question)}</p>
 
 				{options.map((item, index) => (
